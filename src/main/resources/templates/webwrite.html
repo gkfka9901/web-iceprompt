@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>게시물 작성폼</title>
+</head>
+
+<style>
+    .layout {
+        width: 500px;
+        margin: 0 auto;
+        margin-top: 40px;
+    }
+
+    .layout input {
+        width: 100%;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+    }
+
+    .layout textarea {
+        width: 100%;
+        margin-top: 10px;
+        min-height: 200px;
+    }
+
+</style>
+<body>
+<div class="layout">
+    <form action="/web/writepro" method="post"> <!--post 방식으로 title과 content를 Web 객체로 전달-->
+        <div>1. 제목</div>
+        <input name="title" type="text">
+        <div>2. 기능(한 줄 설명)</div>
+        <input name="webContentList[0].content"></input>
+        <div>3. Chat GPT 버전</div>
+        <input name="webContentList[1].content"></input>
+        <div>4. 상세설명</div>
+        <textarea name="webContentList[2].content"></textarea>
+        <div>5. 프롬프트</div>
+        <textarea name="webContentList[3].content"></textarea>
+        <div>6. 결과</div>
+        <textarea name="webContentList[4].content"></textarea>
+        <button type="submit">등록</button>
+    </form>
+</div>
+</body>
+</html>

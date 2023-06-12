@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -62,14 +62,14 @@
     </div>
     <div class="row justify-content-center search-container">
         <div class="col-md-6">
-            <div class="input-group">
-                <input type="text" class="form-control search-input" placeholder="Search">
+            <form th:action="@{/web/list}" method="get" class="input-group">
+                <input type="text" class="form-control search-input" placeholder="Search" name="searchKeyword">
                 <div class="input-group-append">
-                    <span class="input-group-text search-icon">
+                    <button class="input-group-text search-icon" type="submit">
                         <i class="fas fa-search"></i>
-                    </span>
+                    </button>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
     <a href="login.html" class="login-button">Log in</a>

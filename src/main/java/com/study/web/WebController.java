@@ -22,7 +22,17 @@ public class WebController {
 
 
     @GetMapping("/web/index")
-    public String webIndex() {
+    public String webIndex(Model model,
+                           @PageableDefault(page = 0, size = 5, sort = "id", direction = Sort.Direction.DESC) Pageable pageable,
+                           @RequestParam(required = false) String searchKeyword) {
+
+        Page<Web> list = null;
+
+        if (searchKeyword == null) {
+            list = webService.webList(pageable);
+        } else {
+            list = webService.webSearchList(searchKeyword, pageable);
+        }
 
         return "webindex";
     }
@@ -104,5 +114,6 @@ public class WebController {
 
         return "redirect:/web/list";
     }
+
 
 }

@@ -1,0 +1,37 @@
+@media screen and (max-width: 768px) {
+  .logo-container {
+    position: static;
+    display: block;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .logo-container a {
+    display: inline-block;
+    margin-right: 0;
+  }
+
+  .logo-text {
+    font-size: 24px;
+  }
+
+  .subtext {
+    font-size: 18px;
+  }
+
+  .search-form {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .search-input {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .search-button {
+    width: 100%;
+  }
+}

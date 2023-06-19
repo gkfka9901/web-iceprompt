@@ -2,39 +2,35 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>게시물 수정</title>
+  <title>게시물 작성폼</title>
 </head>
 
 <style>
+
     .layout {
-        width: 500px;
-        margin: 0 auto;
-        margin-top: 40px;
+        width : 500px;
+        margin : 0 auto;
+        margin-top : 40px;
     }
 
-    .layout input,
+    .layout input {
+        width : 100%;
+        box-sizing : border-box
+    }
+
     .layout textarea {
-        width: 100%;
-        box-sizing: border-box;
-        margin-bottom: 10px;
+        width : 100%;
+        margin-top : 10px;
+        min-height : 300px;
     }
 
 </style>
+
 <body>
 <div class="layout">
-  <form th:action="@{/web/update/{id}(id=${web.id})}" method="post">
-    <div>1. 제목</div>
+  <form th:action="@{/web/update/{id}(id = ${web.id})}" method="post">
     <input name="title" type="text" th:value="${web.title}">
-    <div>2. 기능(한 줄 설명)</div>
-    <input name="webContentList[0].content" type="text" th:value="${web.webContentList[0].content}">
-    <div>3. Chat GPT 버전</div>
-    <input name="webContentList[1].content" type="text" th:value="${web.webContentList[1].content}">
-    <div>4. 상세설명</div>
-    <textarea name="webContentList[2].content" th:text="${web.webContentList[2].content}"></textarea>
-    <div>5. 프롬프트</div>
-    <textarea name="webContentList[3].content" th:text="${web.webContentList[3].content}"></textarea>
-    <div>6. 결과</div>
-    <textarea name="webContentList[4].content" th:text="${web.webContentList[4].content}"></textarea>
+    <textarea name="content" th:text="${web.content}"></textarea>
     <button type="submit">수정</button>
   </form>
 </div>

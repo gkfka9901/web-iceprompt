@@ -1,7 +1,6 @@
 package com.study.web;
 
 import com.study.web.entity.Web;
-import com.study.web.entity.WebContent;
 import com.study.web.service.WebService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -11,8 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-
-import java.sql.SQLOutput;
 
 @Controller
 public class WebController {
@@ -53,10 +50,13 @@ public class WebController {
     }
 
     @PostMapping("/web/writepro")
-    public String webWritepro(Web web) {    //Web web은 webWritepro() 메소드의 매개변수로, Web 클래스 타입의 객체(=인스턴스).
+    public String webWritepro(Web web, Model model) {    //Web web은 webWritepro() 메소드의 매개변수로, Web 클래스 타입의 객체(=인스턴스).
 
         webService.write(web);  //Autowired를 통해 주입된 webService
-        return "redirect:/web/list";
+        model.addAttribute("message", "글 작성이 완료되었습니다.");
+        model.addAttribute("searchUrl", "/web/list");
+
+        return "message";
     }
 
     @GetMapping("/web/list")
@@ -87,11 +87,7 @@ public class WebController {
 
     @GetMapping("/web/view")
     public String webView(Model model, Integer id) {
-        Web web = webService.webview(id);
-        model.addAttribute("web", web);
-        model.addAttribute("webContentList", web.getWebContentList());
-
-        System.out.println();
+        model.addAttribute("web", webService.webview(id));
         return "webview";
     }
 
@@ -114,15 +110,15 @@ public class WebController {
     }
 
     @PostMapping("/web/update/{id}")
-    public String webUpdate(@PathVariable("id") Integer id, Web web) {
+    public String boardUpdate(@PathVariable("id") Integer id, Web web) throws Exception{
 
-        Web webTemp = webService.webview(id);
-        webTemp.setTitle(web.getTitle());
-        webTemp.setWebContentList(web.getWebContentList());
+        Web boardTemp = webService.webview(id);
+        boardTemp.setTitle(web.getTitle());
+        boardTemp.setContent(web.getContent());
 
-        webService.write(webTemp);
+        webService.write(boardTemp);
 
-        return "redirect:/web/list";
+        return "redirect:/board/list";
     }
 
 

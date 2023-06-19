@@ -40,8 +40,6 @@ public class WebService {   //@Service 어노테이션을 사용하여 Service B
         return optionalWeb.orElseThrow(() -> new IllegalArgumentException("게시글이 존재하지 않습니다."));
     }
 
-
-
     // 특정 게시글 삭제
 
     public void webDelete(Integer id) {

@@ -31,6 +31,7 @@
   <form th:action="@{/web/update/{id}(id = ${web.id})}" method="post">
     <input name="title" type="text" th:value="${web.title}">
     <textarea name="content" th:text="${web.content}"></textarea>
+    <textarea name="content2" th:text="${web.content2}"></textarea>
     <button type="submit">수정</button>
   </form>
 </div>

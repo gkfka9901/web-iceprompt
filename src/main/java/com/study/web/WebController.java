@@ -53,10 +53,11 @@ public class WebController {
     public String webWritepro(Web web, Model model) {    //Web web은 webWritepro() 메소드의 매개변수로, Web 클래스 타입의 객체(=인스턴스).
 
         webService.write(web);  //Autowired를 통해 주입된 webService
+
         model.addAttribute("message", "글 작성이 완료되었습니다.");
         model.addAttribute("searchUrl", "/web/list");
 
-        return "message";
+        return "writemessage";
     }
 
     @GetMapping("/web/list")
@@ -115,11 +116,33 @@ public class WebController {
         Web webTemp = webService.webview(id);
         webTemp.setTitle(web.getTitle());
         webTemp.setContent(web.getContent());
+        webTemp.setContent2(web.getContent2());
 
         webService.write(webTemp);
 
         return "redirect:/web/list";
     }
 
+    // 회원가입
+    @GetMapping("/web/membership")
+    public String membership() {
 
+        return "membership";
+    }
+
+    @PostMapping("/web/membershippro")
+    public String membershippro(@RequestParam("memberEmail") String memberId,
+                                @RequestParam("memberPassword") String memberPw,
+                                @RequestParam("memberName") String memberName,
+                                Model model) {
+
+            return "redirect:/";
+    }
+
+    // 로그인
+    @GetMapping("/web/login")
+    public String login() {
+
+        return "login";
+    }
 }

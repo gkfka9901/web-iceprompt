@@ -18,7 +18,7 @@ public class WebController {
     private WebService webService;
 
 
-    @GetMapping("/web/index")
+    @GetMapping("/")
     public String webIndex(Model model,
                            @PageableDefault(page = 0, size = 5, sort = "id", direction = Sort.Direction.DESC) Pageable pageable,
                            @RequestParam(required = false) String searchKeyword) {
@@ -110,15 +110,15 @@ public class WebController {
     }
 
     @PostMapping("/web/update/{id}")
-    public String boardUpdate(@PathVariable("id") Integer id, Web web) throws Exception{
+    public String webUpdate(@PathVariable("id") Integer id, Web web) throws Exception{
 
-        Web boardTemp = webService.webview(id);
-        boardTemp.setTitle(web.getTitle());
-        boardTemp.setContent(web.getContent());
+        Web webTemp = webService.webview(id);
+        webTemp.setTitle(web.getTitle());
+        webTemp.setContent(web.getContent());
 
-        webService.write(boardTemp);
+        webService.write(webTemp);
 
-        return "redirect:/board/list";
+        return "redirect:/web/list";
     }
 
 

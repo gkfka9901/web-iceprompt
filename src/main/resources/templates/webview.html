@@ -10,6 +10,6 @@
 <p th:text="${web.content}">내용이 들어갈 부분입니다.</p>
 <p th:text="${web.content2}">내용이 들어갈 부분입니다.</p>
 <a th:href="@{/web/modify/{id}(id = ${web.id})}">수정</a>
-<a th:href="@{/web/delete/{id}(id = ${web.id})}">삭제</a>
+<a th:href="@{/web/delete(id = ${web.id})}">삭제</a>
 </body>
 </html>

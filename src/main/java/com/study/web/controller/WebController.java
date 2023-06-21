@@ -133,8 +133,7 @@ public class WebController {
     @PostMapping("/web/membershippro")
     public String membershippro(@RequestParam("memberEmail") String memberId,
                                 @RequestParam("memberPassword") String memberPw,
-                                @RequestParam("memberName") String memberName,
-                                Model model) {
+                                @RequestParam("memberName") String memberName) {
 
             return "redirect:/";
     }

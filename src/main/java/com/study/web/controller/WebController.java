@@ -1,4 +1,4 @@
-package com.study.web;
+package com.study.web.controller;
 
 import com.study.web.entity.Web;
 import com.study.web.service.WebService;
@@ -123,25 +123,4 @@ public class WebController {
         return "redirect:/web/list";
     }
 
-    // 회원가입
-    @GetMapping("/web/membership")
-    public String membership() {
-
-        return "membership";
-    }
-
-    @PostMapping("/web/membershippro")
-    public String membershippro(@RequestParam("memberEmail") String memberId,
-                                @RequestParam("memberPassword") String memberPw,
-                                @RequestParam("memberName") String memberName) {
-
-            return "redirect:/";
-    }
-
-    // 로그인
-    @GetMapping("/web/login")
-    public String login() {
-
-        return "login";
-    }
 }

@@ -5,10 +5,10 @@ import com.study.web.service.MemberService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 public class MemberController {
@@ -34,16 +34,62 @@ public class MemberController {
     }
 
     // 로그인
+    @GetMapping("/web/login")
+    public String loginForm() {
+        return "login";
+    }
+
     @PostMapping("/web/login")
     public String login(@ModelAttribute MemberDTO memberDTO, HttpSession session) {
         MemberDTO loginResult = memberService.login(memberDTO);
         if (loginResult != null) {
             // 로그인 성공
             session.setAttribute("loginEmail", loginResult.getMemberEmail());
-            return "test";
+            return "main";
         } else {
             // 로그인 실패
             return "redirect:/web/login";
         }
     }
+
+    @GetMapping("/web/member/manage")
+    public String findAll(Model model) {
+        List<MemberDTO> memberDTOList = memberService.findAll();
+        model.addAttribute("memberList", memberDTOList);
+        return "memberlist";
+    }
+
+    @GetMapping("/web/member/{id}")
+    public String findById(@PathVariable Long id, Model model) {
+        MemberDTO memberDTO = memberService.findById(id);
+        model.addAttribute("member", memberDTO);
+        return "detail";
+    }
+
+    @GetMapping("/web/member/update")
+    public String updateForm(HttpSession sesssion, Model model) {
+        String myEmail = (String) sesssion.getAttribute("loginEmail");
+        MemberDTO memberDTO = memberService.updateForm(myEmail);
+        model.addAttribute("updateMember", memberDTO);
+        return "update";
+    }
+
+    @PostMapping("/web/member/update")
+    public String update(@ModelAttribute MemberDTO memberDTO) {
+        memberService.update(memberDTO);
+        return "redirect:/web/member/" + memberDTO.getId();
+    }
+
+    @GetMapping("/web/member/delete/{id}")
+    public String delete(@PathVariable Long id) {
+        memberService.deleteById(id);
+        return "redirect:/web/member/manage";
+    }
+
+    @GetMapping("/web/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "/";
+    }
+
 }

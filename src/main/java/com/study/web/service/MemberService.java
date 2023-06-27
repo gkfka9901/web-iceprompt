@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import javax.swing.text.html.Option;
 import java.awt.print.Pageable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -17,7 +19,7 @@ public class MemberService {
     public void membership(MemberDTO memberDTO) {
         // 1. dto -> entity
         // 2. repository의 save() 메소드 호출
-        MemberEntity memberEntity = MemberEntity.toEntity(memberDTO); // dto -> entity
+        MemberEntity memberEntity = MemberEntity.toMemberEntity(memberDTO); // dto -> entity
         memberRepository.save(memberEntity);
         // repository의 save() 메소드 호출 (조건. entity 객체를 넘겨줘야 함)
     }
@@ -45,5 +47,45 @@ public class MemberService {
             // 조회 결과가 없다(해당 이메일을 가진 회원이 없다)
             return null;
         }
+    }
+    public List<MemberDTO> findAll() {
+        List<MemberEntity> memberEntityList = memberRepository.findAll();
+        List<MemberDTO> memberDTOList = new ArrayList<>();
+        for (MemberEntity memberEntity : memberEntityList) {
+            MemberDTO memberDTO = MemberDTO.toMemberDTO(memberEntity);
+            memberDTOList.add(memberDTO);
+        }
+        return memberDTOList;
+    }
+
+    public MemberDTO findById(Long id) {
+        Optional<MemberEntity> optionalMemberEntity = memberRepository.findById(id);
+        if (optionalMemberEntity.isPresent()) {
+//            MemberEntity memberEntity = optionalMemberEntity.get();
+//            MemberDTO memberDTO = MemberDTO.toMemberDTO(memberEntity);
+//            return memberDTO; 가 아래의 1줄로
+            return MemberDTO.toMemberDTO(optionalMemberEntity.get());
+        } else {
+            return null;
+        }
+
+    }
+
+    public MemberDTO updateForm(String myEmail) {
+        memberRepository.findByMemberEmail(myEmail);
+        Optional<MemberEntity> optionalMemberEntity = memberRepository.findByMemberEmail(myEmail);
+        if (optionalMemberEntity.isPresent()) {
+            return MemberDTO.toMemberDTO(optionalMemberEntity.get());
+        } else {
+            return null;
+        }
+    }
+
+    public void update(MemberDTO memberDTO) {
+        memberRepository.save(MemberEntity.toUpdateMemberEntity(memberDTO));
+    }
+
+    public void deleteById(Long id) {
+        memberRepository.deleteById(id);
     }
 }

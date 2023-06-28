@@ -105,8 +105,8 @@ public class MemberController {
 //        }
 //    }
 
-    @GetMapping("web/member/memberindex")
-    public String memberindex() {
+    @GetMapping("/web/memberindex")
+    public String memberIndex() {
         return "memberindex";
     }
 }

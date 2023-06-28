@@ -104,4 +104,9 @@ public class MemberController {
 //            return "no";
 //        }
 //    }
+
+    @GetMapping("web/member/memberindex")
+    public String memberindex() {
+        return "memberindex";
+    }
 }

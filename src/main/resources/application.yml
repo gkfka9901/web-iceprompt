@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://localhost:3306/web
+    url: jdbc:mariadb://svc.sel4.cloudtype.app:31526/web
     username: root
     password: 3985
     thymeleaf:

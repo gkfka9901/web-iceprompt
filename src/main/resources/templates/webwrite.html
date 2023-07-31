@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>게시물 작성폼</title>
-</head>
-
-<style>
-
-    .layout {
+    <link rel="stylesheet" href="/css/webwrite.css">
+    <style>
+        .layout {
         width : 500px;
         margin : 0 auto;
         margin-top : 40px;
@@ -24,11 +24,13 @@
         min-height : 300px;
     }
 
-</style>
+    </style>
+</head>
 
 <body>
 <div class="layout">
     <form action="/web/writepro" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <input name="title" type="text">
         <textarea name="content"></textarea>
         <textarea name="content2"></textarea>

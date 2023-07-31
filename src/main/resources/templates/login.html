@@ -1,5 +1,6 @@
 <!doctype html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <!-- Required meta tags -->
@@ -47,6 +48,7 @@
       </label>
     </div> -->
     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    <a th:href="@{/web/register}" class="membership-button" sec:authorize="!isAuthenticated()">회원가입</a>
     <p class="mt-5 mb-3 text-muted">&copy; 2017-2020</p>
 </form>
 

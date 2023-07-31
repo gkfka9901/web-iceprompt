@@ -4,8 +4,9 @@ spring:
     url: jdbc:mariadb://svc.sel4.cloudtype.app:31526/web
     username: root
     password: 3985
-    thymeleaf:
-      cache: false
+
+  thymeleaf:
+    cache: false
 
   jpa:
     database-platform: org.hibernate.dialect.MariaDBDialect
@@ -13,3 +14,9 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
+
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG

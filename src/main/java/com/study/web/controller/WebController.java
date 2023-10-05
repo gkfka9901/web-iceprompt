@@ -115,12 +115,20 @@ public class WebController {
 
         Web webTemp = webService.webview(id);
         webTemp.setTitle(web.getTitle());
-        webTemp.setContent(web.getContent());
+        webTemp.setContent1(web.getContent1());
         webTemp.setContent2(web.getContent2());
+        webTemp.setContent3(web.getContent3());
+        webTemp.setContent4(web.getContent4());
+        webTemp.setContent5(web.getContent5());
 
         webService.write(webTemp);
 
         return "redirect:/web/list";
+    }
+
+    @GetMapping("/web/account")
+    public String webAccount() {
+        return "account";
     }
 
 }

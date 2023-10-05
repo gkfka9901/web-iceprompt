@@ -28,8 +28,11 @@
 <div class="layout">
   <form th:action="@{/web/update/{id}(id = ${web.id})}" method="post">
     <input name="title" type="text" th:value="${web.title}">
-    <textarea name="content" th:text="${web.content}"></textarea>
+    <textarea name="content1" th:text="${web.content1}"></textarea>
     <textarea name="content2" th:text="${web.content2}"></textarea>
+    <textarea name="content3" th:text="${web.content3}"></textarea>
+    <textarea name="content4" th:text="${web.content4}"></textarea>
+    <textarea name="content5" th:text="${web.content5}"></textarea>
     <button type="submit">수정</button>
   </form>
 </div>

@@ -14,8 +14,15 @@ public class Web {
 
     private String title;
 
-    private String content;
+    private String content1;
 
     private String content2;
+
+    private String content3;
+
+    private String content4;
+
+    private String content5;
+
 
 }

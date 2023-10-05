@@ -7,8 +7,11 @@
 <body>
 
 <h1 th:text="${web.title}">제목입니다.</h1>
-<p th:text="${web.content}">내용이 들어갈 부분입니다.</p>
+<p th:text="${web.content1}">내용이 들어갈 부분입니다.</p>
 <p th:text="${web.content2}">내용이 들어갈 부분입니다.</p>
+<p th:text="${web.content3}">내용이 들어갈 부분입니다.</p>
+<p th:text="${web.content4}">내용이 들어갈 부분입니다.</p>
+<p th:text="${web.content5}">내용이 들어갈 부분입니다.</p>
 <a th:href="@{/web/modify/{id}(id = ${web.id})}">수정</a>
 <a th:href="@{/web/delete(id = ${web.id})}">삭제</a>
 </body>
